@@ -1,15 +1,25 @@
-import {JobPosition, JobPositionType} from './JobPosition';
-import {useAppSelector} from "../store/hooks/hooks";
-import {selectAllPosition} from "../store/reducers/positionsReducer/positionSelectors";
+import {JobPosition} from './JobPosition';
+import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
+import {selectVisiblePositions} from "../store/reducers/positionsReducer/positionSelectors";
+import {addFilterAC} from "../store/reducers/filterReducer/filterActions";
+import {JobPositionType} from "../store/reducers/positionsReducer/positionReducer";
 
 const JobList = () => {
 
-    const data = useAppSelector(selectAllPosition)
+    const data = useAppSelector((state) => selectVisiblePositions(state.positions, state.filters))
+    const dispatch = useAppDispatch();
+    console.log(data)
+    const handleAddFilter = (filter: string) => {
+        dispatch(addFilterAC(filter))
+    }
 
     return (
         <div className='job-list'>
-            {data.map((item: JobPositionType) => (
-                <JobPosition key={item.id} {...item} />
+            {data.map((jobPosition: JobPositionType) => (
+                <JobPosition
+                    handleAddFilter={handleAddFilter}
+                    key={jobPosition.id}
+                    jobPosition={jobPosition}/>
             ))}
         </div>
     )

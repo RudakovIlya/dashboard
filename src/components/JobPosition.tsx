@@ -2,39 +2,30 @@ import {Badge} from "../UI/Badge";
 import {Card} from "../UI/Card";
 import {Stack} from "../UI/Stack";
 import {FC} from "react";
+import {JobPositionType} from "../store/reducers/positionsReducer/positionReducer";
 
-export type JobPositionType = {
-    id: number;
-    company: string;
-    logo: string;
-    new: boolean;
-    featured: boolean;
-    position: string;
-    role: string;
-    level: string;
-    postedAt: string;
-    contract: string;
-    location: string;
-    languages: string[];
-    tools: string[];
+type JobPositionPropsType = {
+    jobPosition: JobPositionType
+    handleAddFilter: (filter: string) => void
 }
 
-
-const JobPosition: FC<JobPositionType> = ({
-                                              id,
-                                              company,
-                                              logo,
-                                              new: isNew,
-                                              featured,
-                                              position,
-                                              role,
-                                              level,
-                                              postedAt,
-                                              contract,
-                                              location,
-                                              languages,
-                                              tools,
-                                          }) => {
+const JobPosition: FC<JobPositionPropsType> = ({
+                                                   jobPosition, handleAddFilter
+                                               }) => {
+    const {
+        company,
+        logo,
+        new: isNew,
+        position,
+        role,
+        featured,
+        languages,
+        level,
+        postedAt,
+        contract,
+        location,
+        tools
+    } = jobPosition
     const badges = [role, level, ...languages, ...tools];
 
     return (
@@ -82,7 +73,7 @@ const JobPosition: FC<JobPositionType> = ({
                 </div>
                 <Stack pos={''}>
                     {badges.map(item => (
-                        <Badge key={item}>{item}</Badge>
+                        <Badge onClick={() => handleAddFilter(item)} key={item}>{item}</Badge>
                     ))}
                 </Stack>
             </div>

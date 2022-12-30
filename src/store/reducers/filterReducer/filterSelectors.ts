@@ -1,1 +1,3 @@
-export const filterSelectors = 1
+import {RootStateType} from "../../store";
+
+export const selectFilters = (state: RootStateType) => state.filters

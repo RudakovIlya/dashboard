@@ -1,4 +1,4 @@
-import {JobPositionType} from "../../../components/JobPosition";
+import {JobPositionType} from "./positionReducer";
 
 export const addPositionsAC = (positions: JobPositionType[]) => {
     return {
