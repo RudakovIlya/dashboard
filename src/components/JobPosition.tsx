@@ -1,7 +1,7 @@
 import {Badge} from "../UI/Badge";
 import {Card} from "../UI/Card";
 import {Stack} from "../UI/Stack";
-import {FC} from "react";
+import {FC, memo} from "react";
 import {JobPositionType} from "../store/reducers/positionsReducer/positionReducer";
 
 type JobPositionPropsType = {
@@ -9,9 +9,9 @@ type JobPositionPropsType = {
     handleAddFilter: (filter: string) => void
 }
 
-const JobPosition: FC<JobPositionPropsType> = ({
-                                                   jobPosition, handleAddFilter
-                                               }) => {
+const JobPosition: FC<JobPositionPropsType> = memo(({
+                                                        jobPosition, handleAddFilter
+                                                    }) => {
     const {
         company,
         logo,
@@ -79,6 +79,6 @@ const JobPosition: FC<JobPositionPropsType> = ({
             </div>
         </Card>
     )
-}
+})
 
 export {JobPosition};

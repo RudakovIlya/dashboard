@@ -1,4 +1,4 @@
-import {FC, ReactNode} from "react";
+import {FC, memo, ReactNode} from "react";
 
 type CardType = {
     children?: ReactNode,
@@ -6,7 +6,7 @@ type CardType = {
     className?: string
 }
 
-const Card: FC<CardType> = ({children, isFeatured, className}) => {
+const Card: FC<CardType> = memo(({children, isFeatured, className}) => {
     return (
         <div
             className={
@@ -16,6 +16,6 @@ const Card: FC<CardType> = ({children, isFeatured, className}) => {
             {children}
         </div>
     )
-}
+})
 
 export {Card};

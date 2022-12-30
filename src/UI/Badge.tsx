@@ -1,4 +1,4 @@
-import React, {ReactNode, FC} from 'react'
+import React, {ReactNode, FC, memo} from 'react'
 import RemoveIcon from "./RemoveIcon";
 
 type BadgeType = {
@@ -9,13 +9,13 @@ type BadgeType = {
     onClick?: () => void
 }
 
-const Badge: FC<BadgeType> = ({
-                                  variant = 'basic',
-                                  colorScheme = 'light',
-                                  children,
-                                  onClear,
-                                  onClick,
-                              }) => (
+const Badge: FC<BadgeType> = memo(({
+                                       variant = 'basic',
+                                       colorScheme = 'light',
+                                       children,
+                                       onClear,
+                                       onClick,
+                                   }) => (
     <div className={`badge badge--${variant} badge--${colorScheme}`} onClick={onClick}>
     <span>
       {children}
@@ -26,6 +26,6 @@ const Badge: FC<BadgeType> = ({
             </div>
         )}
     </div>
-);
+));
 
 export {Badge};
