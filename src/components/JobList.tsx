@@ -1,11 +1,11 @@
-import data from '../mock/data.json';
 import {JobPosition, JobPositionType} from './JobPosition';
-
-export type DataType = {
-    data: JobPositionType[]
-}
+import {useAppSelector} from "../store/hooks/hooks";
+import {selectAllPosition} from "../store/reducers/positionsReducer/positionSelectors";
 
 const JobList = () => {
+
+    const data = useAppSelector(selectAllPosition)
+
     return (
         <div className='job-list'>
             {data.map((item: JobPositionType) => (

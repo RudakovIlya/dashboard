@@ -1,10 +1,12 @@
-export const addPositions = (position: string) => {
+import {JobPositionType} from "../../../components/JobPosition";
+
+export const addPositionsAC = (positions: JobPositionType[]) => {
     return {
         type: 'ADD-POSITIONS',
         payload: {
-            position
+            positions
         }
     } as const
 }
 
-export type PositionActionsType = ReturnType<typeof addPositions>
+export type PositionActionsType = ReturnType<typeof addPositionsAC>
