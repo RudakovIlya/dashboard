@@ -4,6 +4,7 @@ import {Stack} from "../UI/Stack";
 import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
 import {selectFilters} from "../store/reducers/filterReducer/filterSelectors";
 import {clearFilterAC, removeFilterAC} from "../store/reducers/filterReducer/filterActions";
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 const FilterPanel = () => {
 
@@ -15,7 +16,7 @@ const FilterPanel = () => {
 
         currentFilters.length ? <Card className="filter-panel">
                 <div className="filter-panel-wrapper">
-                    <Stack pos={'center'}>
+                    <Stack  pos={'center'}>
                         {currentFilters.map(filter => {
                             return (
                                 <Badge key={filter} onClear={() => dispatch(removeFilterAC(filter))}

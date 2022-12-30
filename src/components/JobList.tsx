@@ -4,6 +4,7 @@ import {selectVisiblePositions} from "../store/reducers/positionsReducer/positio
 import {addFilterAC} from "../store/reducers/filterReducer/filterActions";
 import {JobPositionType} from "../store/reducers/positionsReducer/positionReducer";
 import {useCallback} from "react";
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 const JobList = () => {
 
@@ -14,8 +15,10 @@ const JobList = () => {
         dispatch(addFilterAC(filter))
     }, [dispatch])
 
+    const [jobList] = useAutoAnimate<HTMLDivElement>()
+
     return (
-        <div className='job-list'>
+        <div ref={jobList} className='job-list'>
             {data.map((jobPosition: JobPositionType) => (
                 <JobPosition
                     handleAddFilter={handleAddFilter}
