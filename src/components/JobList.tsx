@@ -1,10 +1,10 @@
 import {JobPosition} from './JobPosition';
 import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
-import {selectVisiblePositions} from "../store/reducers/positionsReducer/positionSelectors";
 import {addFilterAC} from "../store/reducers/filterReducer/filterActions";
 import {JobPositionType} from "../store/reducers/positionsReducer/positionReducer";
 import {useCallback} from "react";
 import {useAutoAnimate} from "@formkit/auto-animate/react";
+import {selectVisiblePositions} from "../store/reducers/positionsReducer/positionSelectors";
 
 const JobList = () => {
 
