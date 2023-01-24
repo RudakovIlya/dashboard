@@ -1,25 +1,30 @@
 import {JobPosition} from './JobPosition';
-import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
-import {addFilterAC} from "../store/reducers/filterReducer/filterActions";
-import {JobPositionType} from "../store/reducers/positionsReducer/positionReducer";
+import {useAppDispatch} from "../../app/hooks";
 import {useCallback} from "react";
 import {useAutoAnimate} from "@formkit/auto-animate/react";
-import {selectVisiblePositions} from "../store/reducers/positionsReducer/positionSelectors";
+import {IPositions} from "./positions-slice";
+import {addFilter} from '../filter/filter-slice';
+import {usePositions} from "./usePositions";
+import {useFetchPositions} from "./useFetchPositions";
+
 
 const JobList = () => {
 
-    const data = useAppSelector((state) => selectVisiblePositions(state.positions, state.filters))
+    useFetchPositions();
+
+    const positions = usePositions();
+
     const dispatch = useAppDispatch();
 
     const handleAddFilter = useCallback((filter: string) => {
-        dispatch(addFilterAC(filter))
+        dispatch(addFilter(filter))
     }, [dispatch])
 
     const [jobList] = useAutoAnimate<HTMLDivElement>()
 
     return (
         <div ref={jobList} className='job-list'>
-            {data.map((jobPosition: JobPositionType) => (
+            {positions.map((jobPosition: IPositions) => (
                 <JobPosition
                     handleAddFilter={handleAddFilter}
                     key={jobPosition.id}

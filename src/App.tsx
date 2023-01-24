@@ -1,19 +1,10 @@
-import React, {useEffect} from 'react'
 import {TheHeader} from "./components/TheHeader";
-import {JobList} from "./components/JobList";
-import {FilterPanel} from "./components/FilterPanel";
-import {useAppDispatch} from "./store/hooks/hooks";
-import {addPositionsAC} from "./store/reducers/positionsReducer/positionActions";
-import data from './mock/data.json'
+import {JobList} from "./features/positions/JobList";
+import {FilterPanel} from "./features/filter/FilterPanel";
+import {useFetchPositions} from "./features/positions/useFetchPositions";
 
 function App() {
-
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        dispatch(addPositionsAC(data))
-    }, [dispatch])
-
+    useFetchPositions();
     return (
         <>
             <TheHeader/>

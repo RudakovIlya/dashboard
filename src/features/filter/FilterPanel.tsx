@@ -1,9 +1,8 @@
-import {Badge} from "../UI/Badge";
-import {Card} from "../UI/Card";
-import {Stack} from "../UI/Stack";
-import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
-import {selectFilters} from "../store/reducers/filterReducer/filterSelectors";
-import {clearFilterAC, removeFilterAC} from "../store/reducers/filterReducer/filterActions";
+import {Badge} from "../../UI/Badge";
+import {Card} from "../../UI/Card";
+import {Stack} from "../../UI/Stack";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import {clearFilter, removeFilter, selectFilters} from "./filter-slice";
 
 const FilterPanel = () => {
 
@@ -18,13 +17,13 @@ const FilterPanel = () => {
                     <Stack  pos={'center'}>
                         {currentFilters.map(filter => {
                             return (
-                                <Badge key={filter} onClear={() => dispatch(removeFilterAC(filter))}
+                                <Badge key={filter} onClear={() => dispatch(removeFilter(filter))}
                                        variant="clearable">{filter}</Badge>
                             )
                         })}
                     </Stack>
 
-                    <button onClick={() => dispatch(clearFilterAC())} className='link'>Clear</button>
+                    <button onClick={() => dispatch(clearFilter())} className='link'>Clear</button>
                 </div>
             </Card>
             :
