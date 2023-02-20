@@ -1,14 +1,14 @@
 import {JobPosition} from './JobPosition';
 import {useAppDispatch} from "../../app/hooks";
-import {useCallback} from "react";
+import {memo, useCallback} from "react";
 import {useAutoAnimate} from "@formkit/auto-animate/react";
 import {IPositions} from "./positions-slice";
 import {addFilter} from '../filter/filter-slice';
 import {usePositions} from "./usePositions";
 import {useFetchPositions} from "./useFetchPositions";
+import {Preloader} from "../../components/Preloader";
 
-
-const JobList = () => {
+const JobList = memo(() => {
 
     useFetchPositions();
 
@@ -24,14 +24,17 @@ const JobList = () => {
 
     return (
         <div ref={jobList} className='job-list'>
-            {positions.map((jobPosition: IPositions) => (
+            {positions.length ? positions.map((jobPosition: IPositions) => (
                 <JobPosition
                     handleAddFilter={handleAddFilter}
                     key={jobPosition.id}
                     jobPosition={jobPosition}/>
-            ))}
+            )) : (
+                <Preloader/>
+            )
+            }
         </div>
     )
-}
+})
 
 export {JobList};

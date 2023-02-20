@@ -4,7 +4,7 @@ import {Stack} from "../../UI/Stack";
 import {FC, memo} from "react";
 import {IPositions} from "./positions-slice";
 
-type JobPositionPropsType = {
+interface JobPositionPropsType {
     jobPosition: IPositions
     handleAddFilter: (filter: string) => void
 }
@@ -38,7 +38,7 @@ const JobPosition: FC<JobPositionPropsType> = memo(({
                         alt={company}
                     />
                     <div className='job-position-body'>
-                        <div className='job-postion-company'>
+                        <div className='job-position-company'>
                             <h3>{company}</h3>
                             {(isNew || featured) && (
                                 <Stack pos={''}>

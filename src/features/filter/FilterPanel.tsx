@@ -1,10 +1,11 @@
-import {Badge} from "../../UI/Badge";
+import {memo} from "react";
 import {Card} from "../../UI/Card";
+import {Badge} from "../../UI/Badge";
 import {Stack} from "../../UI/Stack";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {clearFilter, removeFilter, selectFilters} from "./filter-slice";
 
-const FilterPanel = () => {
+const FilterPanel = memo(() => {
 
     const dispatch = useAppDispatch();
 
@@ -14,7 +15,7 @@ const FilterPanel = () => {
 
         currentFilters.length ? <Card className="filter-panel">
                 <div className="filter-panel-wrapper">
-                    <Stack  pos={'center'}>
+                    <Stack pos={'center'}>
                         {currentFilters.map(filter => {
                             return (
                                 <Badge key={filter} onClear={() => dispatch(removeFilter(filter))}
@@ -30,6 +31,6 @@ const FilterPanel = () => {
             <></>
 
     )
-}
+})
 
 export {FilterPanel};

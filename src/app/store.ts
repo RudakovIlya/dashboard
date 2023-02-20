@@ -1,13 +1,13 @@
 import storage from "redux-persist/lib/storage";
-import {configureStore} from "@reduxjs/toolkit";
-import {combineReducers} from "@reduxjs/toolkit";
+import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {filterReducer} from "../features/filter/filter-slice";
 import {positionsReducer} from "../features/positions/positions-slice";
-import {persistStore, persistReducer, FLUSH, PERSIST, PURGE, REHYDRATE, PAUSE, REGISTER} from 'redux-persist'
+import {FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE,} from 'redux-persist'
 
 const persistConfig = {
     key: 'root',
     storage,
+    whitelist: ['filter']
 }
 
 const rootReducer = combineReducers({

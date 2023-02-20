@@ -1,4 +1,4 @@
-import React, {ReactNode, FC, memo} from 'react'
+import {FC, memo, ReactNode} from 'react'
 import RemoveIcon from "./RemoveIcon";
 
 type BadgeType = {

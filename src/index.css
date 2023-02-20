@@ -182,13 +182,13 @@ body {
     font-size: 10px;
 }
 
-.job-postion-company {
+.job-position-company {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.job-postion-company h3 {
+.job-position-company h3 {
     margin: 0;
     font-style: var(--fs-normal);
     color: var(--primary);
